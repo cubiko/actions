@@ -15,11 +15,10 @@ Logs in to the Kubernetes cluster and uses
 
 ## Example usage
 ```yaml
-uses: actions/hello-world-docker-action@v1
+uses: cubiko/actions@run-kubectl
 with:
   access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
   secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  account_id: ${{ secrets.AWS_ACCOUNT_ID }}
   region: ap-southeast-2
   cluster: eks-cluster-name
   command: '-n app rolling-update'
