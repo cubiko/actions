@@ -1,0 +1,24 @@
+# action.yml
+name: 'Run Kubectl'
+description: 'Log in to AWS and run Kubectl'
+inputs:
+  access_key_id:
+    required: true
+  secret_access_key:
+    require: true
+  region:
+    default: ap-southeast-2
+  cluster:
+    required: true
+  command:  # id of input
+    default: version
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    AWS_ACCESS_KEY_ID: "${{inputs.access_key_id}}"
+    AWS_SECRET_ACCESS_KEY: "${{inputs.secret_access_key}}"
+    AWS_DEFAULT_REGION: "${{inputs.region}}"
+  args:
+    - "aws eks update-kubeconfig && kubectl ${{inputs.command}}"
